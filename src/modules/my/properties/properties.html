@@ -19,7 +19,7 @@
                 name="bedrooms"
                 label="Bedrooms"
                 items={selectItems}
-                onselect={handleBedrooms}
+                onselect={handleSelect}
                 class="form-group mx-2"
             >
             </my-custom-select>
@@ -27,22 +27,19 @@
                 name="bathrooms"
                 label="Bathrooms"
                 items={selectItems}
-                onselect={handleBathrooms}
+                onselect={handleSelect}
                 class="form-group mx-2"
             >
             </my-custom-select>
             <div class="form-group mx-2">
-                <label for="limit" class="mr-2">Results</label>
-                <select
+                <my-custom-select
                     name="limit"
-                    onchange={handleLimit}
-                    class="form-control"
+                    label="Results"
+                    items={selectLimitItems}
+                    onselect={handleLimit}
+                    class="form-group mx-2"
                 >
-                    <option value="5" selected>5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                </select>
+                </my-custom-select>
             </div>
             <button class="btn btn-primary" type="submit">
                 <span

@@ -24,6 +24,7 @@ export default class Properties extends LightningElement {
     loading = false;
     properties = [];
     selectItems = ['Any', 0, 1, 2, 3, 4, 5];
+    selectLimitItems = [5, 15, 20, 25, 30];
     @track variables = {
         limit: 5,
         city: null,
@@ -72,25 +73,17 @@ export default class Properties extends LightningElement {
         }
     }
 
-    async handleBedrooms(event) {
+    async handleSelect(event) {
+        const name = event.target.name;
         if (event.detail === 'Any') {
-            this.variables.bedrooms = null;
+            this.variables[name] = null;
             return;
         }
-        this.variables.bedrooms = +event.detail;
-    }
-
-    async handleBathrooms(event) {
-        if (event.detail === 'Any') {
-            this.variables.bathrooms = null;
-            return;
-        }
-        this.variables.bathrooms = +event.detail;
+        this.variables[name] = +event.detail;
     }
 
     async handleLimit(event) {
-        const limit = event.target.value;
-        this.variables.limit = +limit;
+        this.variables.limit = +event.detail;
     }
 
     async handleSearch(event) {
