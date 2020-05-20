@@ -1,0 +1,82 @@
+<template>
+    <h2>Properties</h2>
+    <div if:true={error.hasError} class="alert alert-danger" role="alert">
+        An error ocurred: {error.message}
+    </div>
+    <div class="mb-2">
+        <form onsubmit={handleSearch} class="form-inline">
+            <div class="form-group mr-2">
+                <label for="city" class="sr-only">City</label>
+                <input
+                    type="text"
+                    name="city"
+                    placeholder="Enter your city"
+                    onchange={handleCity}
+                    value={variables.city}
+                />
+            </div>
+            <my-custom-select
+                name="bedrooms"
+                label="Bedrooms"
+                items={selectItems}
+                onselect={handleBedrooms}
+                class="form-group mx-2"
+            >
+            </my-custom-select>
+            <my-custom-select
+                name="bathrooms"
+                label="Bathrooms"
+                items={selectItems}
+                onselect={handleBathrooms}
+                class="form-group mx-2"
+            >
+            </my-custom-select>
+            <div class="form-group mx-2">
+                <label for="limit" class="mr-2">Results</label>
+                <select
+                    name="limit"
+                    onchange={handleLimit}
+                    class="form-control"
+                >
+                    <option value="5" selected>5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" type="submit">
+                <span
+                    if:true={loading}
+                    class="spinner-border spinner-border-sm mr-1"
+                    role="status"
+                    aria-hidden="true"
+                ></span>
+                Search
+            </button>
+        </form>
+    </div>
+    <table if:false={loading} class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Address</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+                <th scope="col">Zip Code</th>
+                <th scope="col">Bedrooms</th>
+                <th scope="col">Bathrooms</th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={properties} for:item="property">
+                <tr key={property.id}>
+                    <td>{property.address}</td>
+                    <td>{property.city}</td>
+                    <td>{property.state}</td>
+                    <td>{property.zipCode}</td>
+                    <td>{property.bedrooms}</td>
+                    <td>{property.bathrooms}</td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+</template>

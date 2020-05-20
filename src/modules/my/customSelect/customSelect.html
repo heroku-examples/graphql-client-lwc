@@ -1,0 +1,8 @@
+<template>
+    <label for={name} class="mr-2">{label}</label>
+    <select name={name} onchange={handleSelect} class="form-control">
+        <template for:each={items} for:item="item">
+            <option key={item} value={item}>{item}</option>
+        </template>
+    </select>
+</template>

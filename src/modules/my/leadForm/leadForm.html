@@ -1,0 +1,60 @@
+<template>
+    <h2>I'm Interested</h2>
+    <div if:true={success} class="alert alert-success" role="alert">
+        Thank you, we will be in touch!
+    </div>
+    <div if:true={error.hasError} class="alert alert-danger" role="alert">
+        An error ocurred: {error.message}
+    </div>
+    <form if:false={success} onsubmit={handleSubmit} class="form">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input
+                type="text"
+                name="firstName"
+                value={lead.firstName}
+                onchange={handleInput}
+                class="form-control"
+            />
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input
+                type="text"
+                name="lastName"
+                value={lead.lastName}
+                onchange={handleInput}
+                class="form-control"
+            />
+        </div>
+        <div class="form-group">
+            <label for="company">Company</label>
+            <input
+                type="text"
+                name="company"
+                value={lead.company}
+                onchange={handleInput}
+                class="form-control"
+            />
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input
+                type="email"
+                name="email"
+                value={lead.email}
+                onchange={handleInput}
+                class="form-control"
+            />
+        </div>
+        <button class="btn btn-primary" type="submit">
+            <span
+                if:true={loading}
+                class="spinner-border spinner-border-sm mr-1"
+                role="status"
+                aria-hidden="true"
+            ></span>
+            Contact me!
+        </button>
+    </form>
+</template>
