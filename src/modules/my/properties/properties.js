@@ -66,7 +66,7 @@ export default class Properties extends LightningElement {
     async handleCity(event) {
         const city = event.target.value;
         if (city != null && city.length > 0) {
-            this.variables.city = city;
+            this.variables.city = city.trim();
         } else {
             this.variables.city = null;
         }
